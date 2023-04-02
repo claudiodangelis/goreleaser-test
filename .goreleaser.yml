@@ -37,7 +37,17 @@ changelog:
     - '^docs:'
     - '^test:'
 release:
-  footer: test
+  footer: |
+    ## Downloads
+    ### Linux
+    - [.deb package](https://github.com/claudiodangelis/goreleaser-test/releases/download/{{ .Tag }}/goreleaser-test_{{ .Tag }}_linux_x86_64.deb)
+    - [.rpm package](https://github.com/claudiodangelis/goreleaser-test/releases/download/{{ .Tag }}/goreleaser-test_{{ .Tag }}_linux_x86_64.rpm)
+    ### macOS
+    - [macOS package](https://github.com/claudiodangelis/goreleaser-test/releases/download/{{ .Tag }}/goreleaser-test_{{ .Tag }}_macOS_x86_64.tar.gz)
+    ### Windows
+    - [Windows executable](https://github.com/claudiodangelis/goreleaser-test/releases/download/{{ .Tag }}/goreleaser-test_{{ .Tag }}_Windows_x86_64.tar.gz)
+
+    Refer to the list below for all supported platform.
 nfpms:
   - replacements:
       darwin: macOS
