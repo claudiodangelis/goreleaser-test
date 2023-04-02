@@ -1,0 +1,51 @@
+before:
+  hooks:
+    - go mod download
+builds:
+- env:
+  - CGO_ENABLED=0
+  ldflags:
+  - -s -w -X github.com/claudiodangelis/qrcp/version.version={{.Version}} -X github.com/claudiodangelis/qrcp/version.date={{.Date}}
+  goos:
+  - linux
+  - darwin
+  - windows
+  goarch:
+  - 386
+  - amd64
+  - arm
+  - arm64
+  goarm:
+  - 7
+  ignore:
+  - goos: darwin
+    goarch: 386
+archives:
+- replacements:
+    darwin: macOS
+    windows: Windows
+    386: i386
+    amd64: x86_64
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
+nfpms:
+  - replacements:
+      darwin: macOS
+      windows: Windows
+      386: i386
+      amd64: x86_64
+    homepage: https://claudiodangelis.com/qrcp
+    maintainer: Claudio d'Angelis <claudiodangelis@gmail.com>
+    description: Transfer files over wifi from your computer to your mobile device by scanning a QR code without leaving the terminal.
+    license: MIT
+    formats:
+      - deb
+      - rpm
